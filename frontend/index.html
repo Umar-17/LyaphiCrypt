@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LyaphiCrypt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 id="logo" onclick="goToStart()">LyaphiCrypt</h1>
+
+    <div id="page-start" class="page active">
+      <div class="btn-group">
+        <button class="btn-start-enc" onclick="showPage('page-encrypt-1')">Encrypt</button>
+        <button class="btn-start-dec" onclick="showPage('page-decrypt-1')">Decrypt</button>
+      </div>
+    </div>
+
+    <div id="page-encrypt-1" class="page">
+      <h2>Encryption:</h2>
+      <div class="input-group">
+        <label>Enter text to encrypt: <span id="e-char-count" class="char-count">0 / 10000</span></label>
+        <textarea id="e-plaintext" placeholder="Type secret message..." maxlength="10000"
+          oninput="updateCount('e-plaintext','e-char-count')"></textarea>
+      </div>
+      <div class="input-group">
+        <label>Enter Key:</label>
+        <input type="text" id="e-key" placeholder="Secret Key">
+      </div>
+      <button class="btn-back" onclick="goToStart()">Back</button>
+      <button class="btn-next" onclick="processEncryption()">Next</button>
+    </div>
+
+    <div id="page-encrypt-2" class="page">
+      <h2>Encryption Result:</h2>
+      <div class="input-group">
+        <label>Your Key (keep it safe):</label>
+        <input type="text" id="e-res-key" readonly>
+      </div>
+      <div class="input-group">
+        <label>Auto-generated IV (save this for decryption):</label>
+        <input type="text" id="e-res-iv" readonly onclick="this.select()">
+      </div>
+      <div class="input-group">
+        <label>Your Encrypted Text (Bytes):</label>
+        <textarea id="e-res-text" class="result-box" readonly onclick="this.select()"></textarea>
+      </div>
+      <button class="btn-back" onclick="showPage('page-encrypt-1')">Back</button>
+    </div>
+
+    <div id="page-decrypt-1" class="page">
+      <h2>Decryption:</h2>
+      <div class="input-group">
+        <label>Enter Ciphertext (space separated numbers):</label>
+        <textarea id="d-ciphertext" placeholder="e.g. 120 45 233..."></textarea>
+      </div>
+      <div class="input-group">
+        <label>Enter Decryption Key:</label>
+        <input type="text" id="d-key" placeholder="Secret Key">
+      </div>
+      <div class="input-group">
+        <label>Enter IV (from encryption result):</label>
+        <input type="text" id="d-iv" placeholder="IV shown after encryption">
+      </div>
+      <button class="btn-back" onclick="goToStart()">Back</button>
+      <button class="btn-next" onclick="processDecryption()">Next</button>
+    </div>
+
+    <div id="page-decrypt-2" class="page">
+      <h2>Decryption Result:</h2>
+      <div class="input-group">
+        <label>Your Decrypted Text:</label>
+        <textarea id="d-res-text" class="result-box" readonly></textarea>
+      </div>
+      <button class="btn-back" onclick="showPage('page-decrypt-1')">Back</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

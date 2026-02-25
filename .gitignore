@@ -1,0 +1,20 @@
+# Compiled binary (platform-specific, regenerate with g++)
+cipher.exe
+cipher
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+venv/
+env/
+.venv/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
